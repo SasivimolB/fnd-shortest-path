@@ -12,25 +12,26 @@ def getinfo(fileName):
     
 # fileName = input("What is graph file name: ")
 # graphInfo = getinfo(fileName)
-start = input("What is start node: ")
-end = input("What is goal node: ")
+start = input("What is start node: ").upper()
+end = input("What is goal node: ").upper()
 
-graphInfo = getinfo("graph2.csv")
+graphInfo = getinfo("graph.csv")
 
-isalone = 'false'
+vertices =  {}
 for i in range(len(graphInfo)):
-    if((graphInfo[i][1] == '0') and ((graphInfo[i][0] == start) or (graphInfo[i][1] == start) or (graphInfo[i][0] == end) or (graphInfo[i][1] == end))):
-        isalone = 'true'
-        break
+    for j in range(2):
+        if(graphInfo[i][j] != '0'):
+            vertices[graphInfo[i][j]] = [float('inf'), '-']
+        else:
+            vertices[graphInfo[i][0]] = [0, '-']
 
-if(isalone == 'true'): print('No path')
+# [print(key,':',value) for key, value in vertices.items()]
+
+if (not(start in vertices) or not(end in vertices)):
+    print("No path")
+elif ([0, '-'] in vertices.values()):
+    print("No path")
 else:
-    vertices =  {}
-    for i in range(len(graphInfo)):
-        for j in range(2):
-            if(graphInfo[i][j] != '0'):
-                vertices[graphInfo[i][j]] = [float('inf'), '-']
-
     vertices[start] = [0, '-']
     visited = set()
     pq = []
