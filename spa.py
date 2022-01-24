@@ -10,12 +10,12 @@ def getinfo(fileName):
     file.close()
     return info
     
-# fileName = input("What is graph file name: ")
-# graphInfo = getinfo(fileName)
+fileName = input("What is graph file name: ")
+graphInfo = getinfo(fileName)
 start = input("What is start node: ").upper()
 end = input("What is goal node: ").upper()
 
-graphInfo = getinfo("graph.csv")
+# graphInfo = getinfo("graph.csv")
 
 vertices =  {}
 for i in range(len(graphInfo)):
