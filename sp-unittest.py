@@ -1,4 +1,3 @@
-from this import d
 from spa import ShortestPath
 import unittest
 class TestSP(unittest.TestCase):
@@ -22,7 +21,7 @@ class TestSP(unittest.TestCase):
         start = 'C'
         end = 'I'
         self.sp = self.spa.findSP(self.graphInfo, self.vertices, start, end)
-        self.assertEqual(self.sp, 0)
+        self.assertEqual(self.sp, float('inf'))
     def test_path2(self):
         start = 'C'
         end = 'I'
@@ -30,22 +29,33 @@ class TestSP(unittest.TestCase):
         self.assertEqual(self.spa.getPath(self.vertices, start, end), 'No path')
 
     def test_cost3(self):
+        start = 'I'
+        end = 'H'
+        self.sp = self.spa.findSP(self.graphInfo, self.vertices, start, end)
+        self.assertEqual(self.sp, float('inf'))
+    def test_path3(self):
+        start = 'I'
+        end = 'H'
+        self.sp = self.spa.findSP(self.graphInfo, self.vertices, start, end)
+        self.assertEqual(self.spa.getPath(self.vertices, start, end), 'No path')
+
+    def test_cost4(self):
         start = 'H'
         end = 'H'
         self.sp = self.spa.findSP(self.graphInfo, self.vertices, start, end)
         self.assertEqual(self.sp, 0)
-    def test_path3(self):
+    def test_path4(self):
         start = 'H'
         end = 'H'
         self.sp = self.spa.findSP(self.graphInfo, self.vertices, start, end)
         self.assertEqual(self.spa.getPath(self.vertices, start, end), 'H->H')
 
-    def test_cost4(self):
+    def test_cost5(self):
         start = 'P'
         end = 'A'
         self.sp = self.spa.findSP(self.graphInfo, self.vertices, start, end)
-        self.assertEqual(self.sp, 0)
-    def test_path4(self):
+        self.assertEqual(self.sp, "No such vertex in the graph")
+    def test_path5(self):
         start = 'P'
         end = 'A'
         self.sp = self.spa.findSP(self.graphInfo, self.vertices, start, end)
